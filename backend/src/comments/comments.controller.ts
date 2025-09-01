@@ -1,4 +1,11 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 
@@ -8,14 +15,14 @@ export class CommentsController {
 
   @Post()
   create(
-    @Param('postId') postId: string,
+    @Param('postId', ParseIntPipe) postId: number,
     @Body() createCommentDto: CreateCommentDto,
   ) {
-    return this.commentsService.create(+postId, createCommentDto);
+    return this.commentsService.create(postId, createCommentDto);
   }
 
   @Get()
-  findByPost(@Param('postId') postId: string) {
-    return this.commentsService.findByPost(+postId);
+  findByPost(@Param('postId', ParseIntPipe) postId: number) {
+    return this.commentsService.findByPost(postId);
   }
 }
