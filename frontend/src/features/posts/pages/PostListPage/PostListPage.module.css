@@ -1,0 +1,53 @@
+.title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.postWrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.actions {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editLink {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.editLink:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.deleteButton {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background: #c82333;
+}
+
+.loading,
+.noPosts {
+  color: #666;
+  font-style: italic;
+  text-align: center;
+}

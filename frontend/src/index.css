@@ -1,0 +1,39 @@
+@import 'normalize.css';
+
+body, #root {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  flex: 1;
+
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+
