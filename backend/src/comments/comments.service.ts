@@ -27,7 +27,7 @@ export class CommentsService {
 
   async findByPost(postId: number) {
     const post = await this.postsRepository.findOne({ where: { id: postId } });
-    if (!post) throw new NotFoundException('Post not found');
+    if (!post) throw new NotFoundException(`Post with id ${postId} not found`);
     return this.commentsRepository.find({
       where: { post: { id: postId } },
       relations: ['post'],

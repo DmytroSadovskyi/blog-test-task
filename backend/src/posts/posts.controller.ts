@@ -11,12 +11,14 @@ import {
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { HttpCode } from '@nestjs/common';
 
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Post()
+  @HttpCode(201)
   create(@Body() createPostDto: CreatePostDto) {
     return this.postsService.create(createPostDto);
   }
@@ -40,6 +42,7 @@ export class PostsController {
   }
 
   @Delete(':id')
+  @HttpCode(204)
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.postsService.remove(id);
   }

@@ -25,7 +25,7 @@ export class PostsService {
       relations: ['comments'],
     });
     if (!post) {
-      throw new NotFoundException(`Post with id ${id} found`);
+      throw new NotFoundException(`Post with id ${id} not found`);
     }
     return post;
   }
@@ -33,16 +33,15 @@ export class PostsService {
   async update(id: number, updatePostDto: UpdatePostDto): Promise<Post> {
     const post = await this.postRepository.findOne({ where: { id } });
     if (!post) {
-      throw new NotFoundException(`Post with id ${id} found`);
+      throw new NotFoundException(`Post with id ${id} not found`);
     }
     return this.postRepository.save({ ...post, ...updatePostDto });
   }
 
   async remove(id: number): Promise<void> {
-    const post = await this.postRepository.findOne({ where: { id } });
-    if (!post) {
-      throw new NotFoundException(`Post with id ${id} found`);
+    const result = await this.postRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Post with id ${id} not found`);
     }
-    await this.postRepository.remove(post);
   }
 }

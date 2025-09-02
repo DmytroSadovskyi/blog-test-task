@@ -5,15 +5,17 @@ import {
   Body,
   Param,
   ParseIntPipe,
+  HttpCode,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 
-@Controller('/posts/:postId/comments')
+@Controller('posts/:postId/comments')
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
 
   @Post()
+  @HttpCode(201)
   create(
     @Param('postId', ParseIntPipe) postId: number,
     @Body() createCommentDto: CreateCommentDto,

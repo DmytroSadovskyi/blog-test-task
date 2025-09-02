@@ -11,6 +11,13 @@ export class Post {
 
   @Column()
   content: string;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  postedAt: Date;
+
+  @Column()
+  author: string;
+
   @OneToMany(() => Comment, (comment) => comment.post)
   comments: Comment[];
 }
