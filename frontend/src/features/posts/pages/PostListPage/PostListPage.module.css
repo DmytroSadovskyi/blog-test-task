@@ -26,7 +26,8 @@
   transition: background-color 0.3s ease;
 }
 
-.editLink:hover {
+.editLink:hover,
+.editLink:focus {
   background-color: rgba(0, 123, 255, 0.1);
 }
 
@@ -41,7 +42,8 @@
   transition: background-color 0.3s ease;
 }
 
-.deleteButton:hover {
+.deleteButton:hover,
+.deleteButton:focus {
   background: #c82333;
 }
 

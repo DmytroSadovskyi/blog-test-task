@@ -15,7 +15,8 @@
   transition: background-color 0.3s ease;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   background-color: #0056b3;
 }
 
@@ -66,6 +67,7 @@
   transition: color 0.3s ease;
 }
 
-.backLink:hover {
+.backLink:hover,
+.backLink:focus {
   color: #0056b3;
 }

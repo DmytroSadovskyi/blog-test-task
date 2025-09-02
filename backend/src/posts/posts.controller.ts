@@ -7,11 +7,13 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { HttpCode } from '@nestjs/common';
+import { FilterPostsDto } from './dto/filter-posts.dto';
 
 @Controller('posts')
 export class PostsController {
@@ -24,8 +26,8 @@ export class PostsController {
   }
 
   @Get()
-  findAll() {
-    return this.postsService.findAll();
+  findAll(@Query() filters: FilterPostsDto) {
+    return this.postsService.findAll(filters);
   }
 
   @Get(':id')

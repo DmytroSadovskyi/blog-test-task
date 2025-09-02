@@ -20,7 +20,8 @@
   transition: color 0.3s ease;
 }
 
-.link:hover {
+.link:hover,
+.link:focus {
   color: #0056b3;
 }
 

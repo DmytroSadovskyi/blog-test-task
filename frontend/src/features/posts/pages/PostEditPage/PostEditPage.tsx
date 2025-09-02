@@ -12,7 +12,7 @@ export default function PostEditPage() {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const post = useSelector((state: RootState) => state.posts.items.find((p) => String(p.id) === id));
+  const post = useSelector((state: RootState) => state.posts.data.find((p) => String(p.id) === id));
 
   useEffect(() => {
     if (id && !post) dispatch(fetchPostById(id));
@@ -20,8 +20,8 @@ export default function PostEditPage() {
 
   if (!post) return <p className={commonStyles.container}>Loading post...</p>;
 
-  const handleSubmit = (data: { title: string; content: string; author: string }) => {
-    dispatch(updatePost({ ...post, ...data }));
+  const handleSubmit = async (data: { title: string; content: string; author: string }) => {
+   await dispatch(updatePost({ ...post, ...data }));
     navigate(`/post/${id}`);
   };
 

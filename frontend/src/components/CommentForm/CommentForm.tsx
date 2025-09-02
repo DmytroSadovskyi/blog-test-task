@@ -5,7 +5,7 @@ import styles from './CommentForm.module.css';
 import commonStyles from '../../styles/common.module.css';
 
 interface Props {
-  onSubmit: (author: string, content: string) => void;
+  onSubmit: (author: string, content: string) => Promise<void>;
 }
 
 interface FormData {
@@ -29,8 +29,8 @@ export const CommentForm = ({ onSubmit }: Props) => {
     defaultValues: { author: '', text: '' },
   });
 
-  const onFormSubmit = (data: FormData) => {
-    onSubmit(data.author, data.text);
+  const onFormSubmit = async (data: FormData) => {
+    await onSubmit(data.author, data.text);
     reset();
   };
 

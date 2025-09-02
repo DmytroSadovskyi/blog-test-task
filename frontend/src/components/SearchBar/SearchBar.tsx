@@ -1,0 +1,27 @@
+import { useSelector, useDispatch } from 'react-redux';
+
+import commonStyles from "../../styles/common.module.css";
+import { setSearch, setAuthor } from "../../features/posts/postsSlice";
+import type { AppDispatch, RootState } from "../../store/store";
+
+export const SearchBar = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { search, author } = useSelector((state: RootState) => state.posts);
+  
+  return (
+    <div style={{ width: 'auto', display: 'flex', gap: '10px', marginBottom: '2rem' }} >
+        <input
+          value={search}
+          onChange={(e) => dispatch(setSearch(e.target.value))}
+          placeholder="Search..."
+          className={commonStyles.input}
+        />
+        <input
+          value={author}
+          onChange={(e) => dispatch(setAuthor(e.target.value))}
+          placeholder="Filter by author"
+          className={commonStyles.input}
+        />
+      </div>
+  )
+}

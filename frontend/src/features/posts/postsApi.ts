@@ -1,9 +1,17 @@
 import api from '../../services/api';
 import type { Post, Comment } from './postsSlice';
 
+export interface GetPostsResponse {
+  data: Post[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
 const postsApi = {
-  async getPosts(): Promise<Post[]> {
-    const res = await api.get('/posts');
+  async getPosts(params: {page?: number, limit?:number, search?: string, author?: string}): Promise<GetPostsResponse> {
+    
+    const res = await api.get('/posts', { params });
     return res.data;
   },
   async getPostById(id: string): Promise<Post> {

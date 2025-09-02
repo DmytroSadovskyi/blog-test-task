@@ -7,7 +7,7 @@ import commonStyles from '../../../../styles/common.module.css';
 
 interface Props {
   initialData?: Partial<Post>;
-  onSubmit: (data: { title: string; content: string; author: string }) => void;
+  onSubmit: (data: { title: string; content: string; author: string }) => Promise<void>;
 }
 
 interface FormData {
@@ -37,8 +37,8 @@ export const PostForm = ({ initialData, onSubmit }: Props) => {
     },
   });
 
-  const onFormSubmit = (data: FormData) => {
-    onSubmit(data);
+  const onFormSubmit = async (data: FormData) => {
+    await onSubmit(data);
     reset();
   };
 

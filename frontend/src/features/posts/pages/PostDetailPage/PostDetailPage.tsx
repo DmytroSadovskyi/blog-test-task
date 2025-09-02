@@ -10,7 +10,7 @@ import commonStyles from '../../../../styles/common.module.css';
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
-  const post = useSelector((state: RootState) => state.posts.items.find((p) => String(p.id) === id));
+  const post = useSelector((state: RootState) => state.posts.data.find((p) => String(p.id) === id));
 
   useEffect(() => {
     if (id) dispatch(fetchPostById(id));
@@ -18,8 +18,8 @@ export default function PostDetailPage() {
 
   if (!post) return <p className={commonStyles.container}>Loading post...</p>;
 
-  const handleAddComment = (author: string, text: string) => {
-    if (id) dispatch(addComment({ postId: id, comment: { author, text, createdAt: new Date().toISOString() } }));
+  const handleAddComment = async (author: string, text: string) => {
+    if (id) await dispatch(addComment({ postId: id, comment: { author, text, createdAt: new Date().toISOString() } }));
   };
 
   return (

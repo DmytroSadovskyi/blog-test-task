@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import postsApi from './postsApi';
+import postsApi, { type GetPostsResponse } from './postsApi';
 
 export interface Comment {
   id: string;
@@ -19,19 +19,32 @@ export interface Post {
 }
 
 interface PostsState {
-  items: Post[];
+  data: Post[];
+  total: number;
+  page: number;
+  limit: number;
   loading: boolean;
   error: string | null;
+  search: string;
+  author: string;
 }
 
 const initialState: PostsState = {
-  items: [],
+  data: [],
+  total: 0,
+  page: 1,
+  limit: 5,
   loading: false,
   error: null,
+  search: '',
+  author: '',
 };
 
 
-export const fetchPosts = createAsyncThunk('posts/fetchAll', postsApi.getPosts);
+export const fetchPosts = createAsyncThunk('posts/fetchAll',
+  async (query: { page?: number; limit?: number; search?: string; author?: string }) => {
+    return postsApi.getPosts(query);
+  });
 export const fetchPostById = createAsyncThunk('posts/fetchById', postsApi.getPostById);
 export const createPost = createAsyncThunk('posts/create', postsApi.createPost);
 export const updatePost = createAsyncThunk('posts/update', postsApi.updatePost);
@@ -46,15 +59,28 @@ export const addComment = createAsyncThunk(
 const postsSlice = createSlice({
   name: 'posts',
   initialState,
-  reducers: {},
+  reducers: {
+    setSearch(state, action: PayloadAction<string>) {
+      state.search = action.payload;
+    },
+    setAuthor(state, action: PayloadAction<string>) {
+      state.author = action.payload;
+    },
+    setPage(state, action: PayloadAction<number>) {
+      state.page = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchPosts.fulfilled, (state, action: PayloadAction<Post[]>) => {
-        state.items = action.payload;
+      .addCase(fetchPosts.fulfilled, (state, action: PayloadAction<GetPostsResponse>) => {
+        state.data = action.payload.data;
+        state.total = action.payload.total;
+        state.page = action.payload.page;
+        state.limit = action.payload.limit;
         state.loading = false;
       })
       .addCase(fetchPosts.rejected, (state, action) => {
@@ -66,11 +92,11 @@ const postsSlice = createSlice({
   state.error = null;
 })
 .addCase(fetchPostById.fulfilled, (state, action: PayloadAction<Post>) => {
-  const idx = state.items.findIndex(p => p.id === action.payload.id);
+  const idx = state.data.findIndex(p => p.id === action.payload.id);
   if (idx >= 0) {
-    state.items[idx] = action.payload;
+    state.data[idx] = action.payload;
   } else {
-    state.items.push(action.payload);
+    state.data.push(action.payload);
   }
   state.loading = false;
 })
@@ -79,20 +105,21 @@ const postsSlice = createSlice({
   state.error = action.error.message || 'Error fetching post';
 })
       .addCase(createPost.fulfilled, (state, action: PayloadAction<Post>) => {
-        state.items.push(action.payload);
+        state.data.push(action.payload);
       })
       .addCase(updatePost.fulfilled, (state, action: PayloadAction<Post>) => {
-        const idx = state.items.findIndex((p) => p.id === action.payload.id);
-        if (idx >= 0) state.items[idx] = action.payload;
+        const idx = state.data.findIndex((p) => p.id === action.payload.id);
+        if (idx >= 0) state.data[idx] = action.payload;
       })
       .addCase(deletePost.fulfilled, (state, action) => {
-        state.items = state.items.filter((p) => p.id !== action.meta.arg);
+        state.data = state.data.filter((p) => p.id !== action.meta.arg);
       })
       .addCase(addComment.fulfilled, (state, action: PayloadAction<Post>) => {
-        const idx = state.items.findIndex((p) => p.id === action.payload.id);
-        if (idx >= 0) state.items[idx] = action.payload;
+        const idx = state.data.findIndex((p) => p.id === action.payload.id);
+        if (idx >= 0) state.data[idx] = action.payload;
       });
   },
 });
 
+export const { setSearch, setAuthor, setPage } = postsSlice.actions;
 export default postsSlice.reducer;

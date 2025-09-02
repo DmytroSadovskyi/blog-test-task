@@ -10,8 +10,8 @@ export default function PostCreatePage() {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const handleSubmit = (data: { title: string; content: string; author: string }) => {
-    dispatch(createPost({ ...data }));
+  const handleSubmit = async (data: { title: string; content: string; author: string }) => {
+   await dispatch(createPost({ ...data }));
     navigate('/');
   };
 
