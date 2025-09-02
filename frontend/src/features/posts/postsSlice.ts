@@ -5,7 +5,7 @@ import postsApi from './postsApi';
 export interface Comment {
   id: string;
   author: string;
-  content: string;
+  text: string;
   date: string;
 }
 
@@ -61,6 +61,23 @@ const postsSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || 'Error fetching posts';
       })
+      .addCase(fetchPostById.pending, (state) => {
+  state.loading = true;
+  state.error = null;
+})
+.addCase(fetchPostById.fulfilled, (state, action: PayloadAction<Post>) => {
+  const idx = state.items.findIndex(p => p.id === action.payload.id);
+  if (idx >= 0) {
+    state.items[idx] = action.payload;
+  } else {
+    state.items.push(action.payload);
+  }
+  state.loading = false;
+})
+.addCase(fetchPostById.rejected, (state, action) => {
+  state.loading = false;
+  state.error = action.error.message || 'Error fetching post';
+})
       .addCase(createPost.fulfilled, (state, action: PayloadAction<Post>) => {
         state.items.push(action.payload);
       })
