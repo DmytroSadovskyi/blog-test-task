@@ -9,6 +9,12 @@ export class Comment {
   @Column()
   text: string;
 
+  @Column()
+  author: string;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+
   @ManyToOne(() => Post, (post) => post.comments, { onDelete: 'CASCADE' })
   post: Post;
 }

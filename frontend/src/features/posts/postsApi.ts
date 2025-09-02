@@ -10,12 +10,12 @@ const postsApi = {
     const res = await api.get(`/posts/${id}`);
     return res.data;
   },
-  async createPost(post: Omit<Post, 'id' | 'comments'>): Promise<Post> {
+  async createPost(post: Omit<Post, 'id' | 'comments' | 'postedAt'>): Promise<Post> {
     const res = await api.post('/posts', { ...post, comments: [] });
     return res.data;
   },
   async updatePost(post: Post): Promise<Post> {
-    const res = await api.put(`/posts/${post.id}`, post);
+    const res = await api.patch(`/posts/${post.id}`, post);
     return res.data;
   },
   async deletePost(id: string): Promise<void> {

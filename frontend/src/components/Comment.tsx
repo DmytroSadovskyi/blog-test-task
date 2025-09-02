@@ -6,7 +6,7 @@ export const CommentComponent = ({ comment }: { comment: Comment }) => {
     <div style={{ borderBottom: '1px solid #ddd', padding: '0.5rem 0' }}>
       <p>{comment.text}</p>
       <small>
-        {comment.author} | {formatDate(comment.date)}
+        {comment.author} | {formatDate(comment.createdAt)}
       </small>
     </div>
   );

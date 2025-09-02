@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Post } from '../features/posts/postsSlice';
-// import formatDate from '../utils/formatDate';
+import formatDate from '../utils/formatDate';
 
 export const PostCard = ({ post }: { post: Post }) => {
   return (
@@ -8,9 +8,9 @@ export const PostCard = ({ post }: { post: Post }) => {
       <h2>
         <Link to={`/post/${post.id}`}>{post.title}</Link>
       </h2>
-      <p>{post.content.substring(0, 100)}...</p>
+      <p>{post.content}</p>
       <small>
-        Author: {post.author} | {post.date}
+        Author: {post.author} | {formatDate(post.postedAt)}
       </small>
     </div>
   );

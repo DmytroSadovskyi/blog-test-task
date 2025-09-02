@@ -23,6 +23,7 @@ export default function PostListPage() {
     <div>
       <h1>List of posts</h1>
       {loading && <p>Loading...</p>}
+      {!loading && items.length === 0 && <p>No posts available.</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {items.map((post) => (
         <div key={post.id} style={{ position: 'relative' }}>

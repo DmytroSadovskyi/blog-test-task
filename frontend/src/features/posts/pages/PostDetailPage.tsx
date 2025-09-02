@@ -20,7 +20,7 @@ export default function PostDetailPage() {
   if (!post) return <p>Loading post...</p>;
 
   const handleAddComment = (author: string, text: string) => {
-    if (id) dispatch(addComment({ postId: id, comment: { author, text, date: new Date().toISOString() } }));
+    if (id) dispatch(addComment({ postId: id, comment: { author, text, createdAt: new Date().toISOString() } }));
   };
 
   return (

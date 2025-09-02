@@ -9,7 +9,7 @@ export default function PostEditPage() {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const post = useSelector((state: RootState) => state.posts.items.find((p) => p.id === id));
+  const post = useSelector((state: RootState) => state.posts.items.find((p) => String(p.id) === id));
 
   useEffect(() => {
     if (id && !post) dispatch(fetchPostById(id));

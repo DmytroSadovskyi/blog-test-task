@@ -6,7 +6,7 @@ export interface Comment {
   id: string;
   author: string;
   text: string;
-  date: string;
+  createdAt: string;
 }
 
 export interface Post {
@@ -14,7 +14,7 @@ export interface Post {
   title: string;
   content: string;
   author: string;
-  date: string;
+  postedAt: string;
   comments: Comment[];
 }
 

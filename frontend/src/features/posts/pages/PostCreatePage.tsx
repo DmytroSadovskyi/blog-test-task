@@ -9,7 +9,7 @@ export default function PostCreatePage() {
   const navigate = useNavigate();
 
   const handleSubmit = (data: { title: string; content: string; author: string }) => {
-    dispatch(createPost({ ...data, date: new Date().toISOString() }));
+    dispatch(createPost({...data}));
     navigate('/');
   };
 
