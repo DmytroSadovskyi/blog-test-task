@@ -28,6 +28,16 @@ useEffect(() => {
 
   const totalPages = Math.ceil(total / limit);
 
+
+  const handlePrevious = () => {
+    if (page > 1) dispatch(setPage(page - 1));
+  };
+
+  const handleNext = () => {
+    if (page < totalPages) dispatch(setPage(page + 1));
+  };
+
+
   return (
     <div className={commonStyles.container}>
       <h1 className={styles.title}>List of Posts</h1>
@@ -50,17 +60,40 @@ useEffect(() => {
           </div>
         </div>
       ))}
-      <div style={{ marginTop: '1rem' }}>
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+       {totalPages > 1 && (
+        <div className={styles.pagination}>
           <button
-            key={num}
-            disabled={num === page}
-            onClick={() => dispatch(setPage(num))}
+            className={`${commonStyles.button} ${styles.paginationButton}`}
+            onClick={handlePrevious}
+            disabled={page === 1}
+            aria-label="Previous page"
           >
-            {num}
+            Previous
           </button>
-        ))}
-      </div>
+          <div className={styles.pageNumbers}>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+              <button
+                key={num}
+                className={`${commonStyles.button} ${styles.paginationButton} ${num === page ? styles.active : ''}`}
+                onClick={() => dispatch(setPage(num))}
+                disabled={num === page}
+                aria-current={num === page ? 'page' : undefined}
+                aria-label={`Page ${num}`}
+              >
+                {num}
+              </button>
+            ))}
+          </div>
+          <button
+            className={`${commonStyles.button} ${styles.paginationButton}`}
+            onClick={handleNext}
+            disabled={page === totalPages}
+            aria-label="Next page"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }
