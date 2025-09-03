@@ -14,7 +14,7 @@ export const SearchBar = () => {
           name='search'
           id='search'
           value={search}
-          onChange={(e) => dispatch(setSearch(e.target.value))}
+          onChange={(e) => dispatch(setSearch(e.target.value.trim()))}
           placeholder="Search..."
           className={commonStyles.input}
         />
@@ -22,7 +22,7 @@ export const SearchBar = () => {
           name='author'
           id='author'
           value={author}
-          onChange={(e) => dispatch(setAuthor(e.target.value))}
+          onChange={(e) => dispatch(setAuthor(e.target.value.trim()))}
           placeholder="Filter by author"
           className={commonStyles.input}
         />
