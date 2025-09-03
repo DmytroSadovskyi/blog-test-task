@@ -38,7 +38,7 @@ This is a full-stack blog application built with modern web technologies. The pr
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
-- Node.js 
+- Node.js (22.19.0 LTS for frontend)
 - npm 
 - PostgreSQL (local setup for development, or use Neon for cloud)
 - Git

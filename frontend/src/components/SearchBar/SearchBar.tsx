@@ -10,13 +10,17 @@ export const SearchBar = () => {
   
   return (
     <div style={{ width: 'auto', display: 'flex', gap: '10px', marginBottom: '2rem' }} >
-        <input
+      <input
+          name='search'
+          id='search'
           value={search}
           onChange={(e) => dispatch(setSearch(e.target.value))}
           placeholder="Search..."
           className={commonStyles.input}
         />
-        <input
+      <input
+          name='author'
+          id='author'
           value={author}
           onChange={(e) => dispatch(setAuthor(e.target.value))}
           placeholder="Filter by author"

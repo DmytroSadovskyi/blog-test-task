@@ -8,6 +8,8 @@ export interface GetPostsResponse {
   limit: number;
 }
 
+export type AddCommentResponse = Post;
+
 const postsApi = {
   async getPosts(params: {page?: number, limit?:number, search?: string, author?: string}): Promise<GetPostsResponse> {
     
@@ -30,9 +32,10 @@ const postsApi = {
     await api.delete(`/posts/${id}`);
   },
   async addComment(postId: string, comment: Omit<Comment, 'id'>): Promise<Post> {
-    const res = await api.post(`/posts/${postId}/comments`, comment);
-    return res.data;
-  },
+  const res = await api.post(`/posts/${postId}/comments`, comment);
+  return res.data;
+}
+
 };
 
 export default postsApi;

@@ -15,14 +15,22 @@ export class CommentsService {
     private postsRepository: Repository<Post>,
   ) {}
   async create(postId: number, createCommentDto: CreateCommentDto) {
-    const post = await this.postsRepository.findOne({ where: { id: postId } });
+    const post = await this.postsRepository.findOne({
+      where: { id: postId },
+      relations: ['comments'],
+    });
     if (!post) throw new NotFoundException('Post not found');
 
     const comment = this.commentsRepository.create({
       ...createCommentDto,
       post,
     });
-    return this.commentsRepository.save(comment);
+    await this.commentsRepository.save(comment);
+
+    return this.postsRepository.findOne({
+      where: { id: postId },
+      relations: ['comments'],
+    });
   }
 
   async findByPost(postId: number) {

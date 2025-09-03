@@ -10,7 +10,7 @@ import commonStyles from '../../../../styles/common.module.css';
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
-  const post = useSelector((state: RootState) => state.posts.data.find((p) => String(p.id) === id));
+const post = useSelector((state: RootState) => state.posts.currentPost);
 
   useEffect(() => {
     if (id) dispatch(fetchPostById(id));
