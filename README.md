@@ -65,10 +65,17 @@ Before you begin, ensure you have the following installed:
 
 4. Set up environment variables:
    - In the `backend` folder, create a `.env` file based on `.env.example` (if available).
-   - Include your Neon database connection string, e.g.:
+   - Include your Neon database connection string, and frontend url e.g.:
      ```bash
      DATABASE_URL=postgresql://user:password@neon-host:5432/dbname?sslmode=require
+     FRONTEND_URL=https://your-site.com
      ```
+   - In the `frontend` folder, create a `.env` file based on `.env.example` (if available).
+   - Include your backend url, e.g.:
+     ```bash
+     VITE_API_URL=https://your-site.com
+     ```
+
 
 ## Running the Application
 
