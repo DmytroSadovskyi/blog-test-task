@@ -14,13 +14,9 @@
 .title {
   margin: 0 0 1.5rem 0;
   font-size: 1.5rem;
+  padding-right: 7rem;
 }
 
-@media screen and (max-width: 425px) {
-  .title {
-    font-size: 1rem;
-  }
-}
 
 .title a {
   color: #007bff;
@@ -41,4 +37,10 @@
 .meta {
   color: #666;
   font-size: 0.875rem;
+}
+
+@media (max-width: 600px) {
+  .title {
+    padding-right: 0; 
+  }
 }
