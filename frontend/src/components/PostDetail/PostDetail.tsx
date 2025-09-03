@@ -1,7 +1,7 @@
-import type { Post } from '../../postsSlice';
-import { CommentComponent } from '../../../../components/Comment/Comment';
-import formatDate from '../../../../utils/formatDate';
-import commonStyles from '../../../../styles/common.module.css';
+import type { Post } from '../../redux/postsSlice';
+import { CommentComponent } from '../../components/Comment/Comment';
+import formatDate from '../../utils/formatDate';
+import commonStyles from '../../styles/common.module.css';
 import styles from './PostDetail.module.css';
 
 export const PostDetail = ({ post }: { post: Post }) => {

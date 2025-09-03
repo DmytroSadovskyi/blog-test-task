@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import type { RootState, AppDispatch } from '../../../../store/store';
-import { fetchPostById, updatePost } from '../../postsSlice';
+import type { RootState, AppDispatch } from '../../redux/store';
+import { fetchPostById, updatePost } from '../../redux/postsSlice';
 import { PostForm } from '../../components/PostForm/PostForm';
-import commonStyles from '../../../../styles/common.module.css';
+import commonStyles from '../../styles/common.module.css';
 import styles from './PostEditPage.module.css';
 
 export default function PostEditPage() {

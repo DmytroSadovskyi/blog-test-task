@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { Post } from '../../features/posts/postsSlice';
+import type { Post } from '../../redux/postsSlice';
 import formatDate from '../../utils/formatDate';
 import styles from './PostCard.module.css';
 

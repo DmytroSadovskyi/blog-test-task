@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import commonStyles from '../../../../styles/common.module.css';
-import styles from './NotFoundPage.module.css';
+import commonStyles from '../../styles/common.module.css'
+import styles from './NotFoundPage.module.css'
 
 export default function NotFoundPage() {
   return (

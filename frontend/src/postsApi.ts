@@ -1,5 +1,5 @@
-import api from '../../services/api';
-import type { Post, Comment } from './postsSlice';
+import api from './services/api';
+import type { Post, Comment } from './redux/postsSlice';
 
 export interface GetPostsResponse {
   data: Post[];

@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import commonStyles from "../../styles/common.module.css";
-import { setSearch, setAuthor } from "../../features/posts/postsSlice";
-import type { AppDispatch, RootState } from "../../store/store";
+import { setSearch, setAuthor } from "../../redux/postsSlice";
+import type { AppDispatch, RootState } from "../../redux/store";
 
 export const SearchBar = () => {
   const dispatch = useDispatch<AppDispatch>();

@@ -14,8 +14,8 @@ interface FormData {
 }
 
 const schema = yup.object({
-  author: yup.string().required('Name is required').min(2, 'Name must be at least 2 characters').max(50, 'Name cannot exceed 50 characters'),
-  text: yup.string().required('Comment is required').min(5, 'Comment must be at least 5 characters').max(500, 'Comment cannot exceed 500 characters'),
+  author: yup.string().trim().required('Name is required').min(2, 'Name must be at least 2 characters').max(50, 'Name cannot exceed 50 characters'),
+  text: yup.string().trim().required('Comment is required').min(5, 'Comment must be at least 5 characters').max(500, 'Comment cannot exceed 500 characters'),
 }).required();
 
 export const CommentForm = ({ onSubmit }: Props) => {

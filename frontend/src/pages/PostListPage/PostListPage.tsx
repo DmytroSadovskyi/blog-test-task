@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDebounce } from 'use-debounce';
-import type { RootState, AppDispatch } from '../../../../store/store';
-import { fetchPosts, deletePost, setPage } from '../../postsSlice';
-import { PostCard } from '../../../../components/PostCard/PostCard';
+import type { RootState, AppDispatch } from '../../redux/store';
+import { fetchPosts, deletePost, setPage } from '../../redux/postsSlice';
+import { PostCard } from '../../components/PostCard/PostCard';
 import { Link } from 'react-router-dom';
-import commonStyles from '../../../../styles/common.module.css';
+import commonStyles from '../../styles/common.module.css';
 import styles from './PostListPage.module.css';
-import { SearchBar } from '../../../../components/SearchBar/SearchBar';
+import { SearchBar } from '../../components/SearchBar/SearchBar';
 
 export default function PostListPage() {
   const dispatch = useDispatch<AppDispatch>();

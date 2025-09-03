@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
-import type { AppDispatch } from '../../../../store/store';
-import { createPost } from '../../postsSlice';
+import type { AppDispatch } from '../../redux/store';
+import { createPost } from '../../redux/postsSlice';
 import { PostForm } from '../../components/PostForm/PostForm';
 import { useNavigate } from 'react-router-dom';
-import commonStyles from '../../../../styles/common.module.css';
+import commonStyles from '../../styles/common.module.css';
 import styles from './PostCreatePage.module.css';
 
 export default function PostCreatePage() {

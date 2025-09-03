@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-import postsApi, { type AddCommentResponse, type GetPostsResponse } from './postsApi';
+import postsApi, { type AddCommentResponse, type GetPostsResponse } from '../postsApi';
 
 export interface Comment {
   id: string;

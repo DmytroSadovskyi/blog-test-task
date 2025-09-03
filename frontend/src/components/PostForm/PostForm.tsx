@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import type { Post } from '../../postsSlice';
+import type { Post } from '../../redux/postsSlice';
 import styles from './PostForm.module.css';
-import commonStyles from '../../../../styles/common.module.css';
+import commonStyles from '../../styles/common.module.css';
 
 interface Props {
   initialData?: Partial<Post>;
@@ -17,9 +17,9 @@ interface FormData {
 }
 
 const schema = yup.object({
-  title: yup.string().required('Title is required').min(3, 'Title must be at least 3 characters').max(100, 'Title cannot exceed 100 characters'),
-  content: yup.string().required('Content is required').min(10, 'Content must be at least 10 characters').max(2000, 'Content cannot exceed 2000 characters'),
-  author: yup.string().required('Author is required').min(2, 'Author name must be at least 2 characters').max(50, 'Author name cannot exceed 50 characters'),
+  title: yup.string().trim().required('Title is required').min(3, 'Title must be at least 3 characters').max(100, 'Title cannot exceed 100 characters'),
+  content: yup.string().trim().required('Content is required').min(10, 'Content must be at least 10 characters').max(2000, 'Content cannot exceed 2000 characters'),
+  author: yup.string().trim().required('Author is required').min(2, 'Author name must be at least 2 characters').max(50, 'Author name cannot exceed 50 characters'),
 }).required();
 
 export const PostForm = ({ initialData, onSubmit }: Props) => {

@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import PostListPage from './features/posts/pages/PostListPage/PostListPage';
-import PostDetailPage from './features/posts/pages/PostDetailPage/PostDetailPage';
-import PostCreatePage from './features/posts/pages/PostCreatePage/PostCreatePage';
-import PostEditPage from './features/posts/pages/PostEditPage/PostEditPage';
-import NotFoundPage from './features/posts/pages/NotFoundPage/NotFoundPage';
+import PostListPage from './pages/PostListPage/PostListPage';
+import PostDetailPage from './pages/PostDetailPage/PostDetailPage';
+import PostCreatePage from './pages/PostCreatePage/PostCreatePage';
+import PostEditPage from './pages/PostEditPage/PostEditPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import type { RootState, AppDispatch } from '../../../../store/store';
-import { fetchPostById, addComment } from '../../postsSlice';
+import type { RootState, AppDispatch } from '../../redux/store';
+import { fetchPostById, addComment } from '../../redux/postsSlice';
 import { PostDetail } from '../../components/PostDetail/PostDetail';
-import { CommentForm } from '../../../../components/CommentForm/CommentForm';
-import commonStyles from '../../../../styles/common.module.css';
+import { CommentForm } from '../../components/CommentForm/CommentForm';
+import commonStyles from '../../styles/common.module.css';
 
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();

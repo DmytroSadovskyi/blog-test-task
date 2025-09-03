@@ -1,4 +1,4 @@
-import type { Comment } from '../../features/posts/postsSlice';
+import type { Comment } from '../../redux/postsSlice';
 import formatDate from '../../utils/formatDate';
 import styles from './Comment.module.css';
 
